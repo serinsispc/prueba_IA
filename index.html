@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asignación Moderna de Tareas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Panel de asignación</p>
+        <h1>Organiza tareas por fecha y hora en segundos.</h1>
+        <p class="subtext">
+          Planifica, asigna y da seguimiento a cada entrega. Todo queda ordenado por
+          día y prioridad para tu equipo.
+        </p>
+      </div>
+      <div class="stats">
+        <div>
+          <span id="totalTasks">0</span>
+          <p>Tareas creadas</p>
+        </div>
+        <div>
+          <span id="pendingTasks">0</span>
+          <p>Pendientes</p>
+        </div>
+        <div>
+          <span id="completedTasks">0</span>
+          <p>Completadas</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="card form-card">
+        <h2>Nueva tarea</h2>
+        <p class="muted">Completa la información y asigna al instante.</p>
+        <form id="taskForm">
+          <label>
+            Nombre de tarea
+            <input type="text" id="taskTitle" placeholder="Ej. Revisar propuesta" required />
+          </label>
+          <label>
+            Responsable
+            <input type="text" id="taskOwner" placeholder="Ej. Andrea López" required />
+          </label>
+          <label class="row">
+            <span>
+              Fecha
+              <input type="date" id="taskDate" required />
+            </span>
+            <span>
+              Hora
+              <input type="time" id="taskTime" required />
+            </span>
+          </label>
+          <label>
+            Prioridad
+            <select id="taskPriority">
+              <option value="Alta">Alta</option>
+              <option value="Media" selected>Media</option>
+              <option value="Baja">Baja</option>
+            </select>
+          </label>
+          <label>
+            Notas
+            <textarea id="taskNotes" rows="3" placeholder="Contexto adicional"></textarea>
+          </label>
+          <button type="submit" class="primary">Asignar tarea</button>
+        </form>
+      </section>
+
+      <section class="card list-card">
+        <div class="list-header">
+          <div>
+            <h2>Agenda por fecha</h2>
+            <p class="muted">Las tareas se ordenan automáticamente por horario.</p>
+          </div>
+          <div class="filters">
+            <button type="button" class="chip active" data-filter="all">Todas</button>
+            <button type="button" class="chip" data-filter="pending">Pendientes</button>
+            <button type="button" class="chip" data-filter="completed">Completadas</button>
+          </div>
+        </div>
+        <div id="taskList" class="task-list">
+          <div class="empty">
+            <h3>Sin tareas aún</h3>
+            <p>Agrega la primera tarea para comenzar a planificar.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="groupTemplate">
+    <div class="task-group">
+      <div class="group-header">
+        <h3></h3>
+        <span class="count"></span>
+      </div>
+      <div class="group-list"></div>
+    </div>
+  </template>
+
+  <template id="taskTemplate">
+    <article class="task">
+      <div class="task-main">
+        <div>
+          <h4></h4>
+          <p class="meta"></p>
+          <p class="notes"></p>
+        </div>
+        <span class="badge"></span>
+      </div>
+      <div class="task-actions">
+        <button type="button" class="ghost" data-action="toggle">Marcar</button>
+        <button type="button" class="ghost danger" data-action="delete">Eliminar</button>
+      </div>
+    </article>
+  </template>
+
+  <script src="script.js"></script>
+</body>
+</html>
