@@ -54,6 +54,50 @@ body {
   margin-bottom: 12px;
 }
 
+.title-animated {
+  position: relative;
+  display: inline-block;
+  animation: floatTitle 4s ease-in-out infinite;
+}
+
+.title-animated::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, rgba(79, 70, 229, 0.2), rgba(79, 70, 229, 0.8));
+  border-radius: 999px;
+  filter: blur(0.5px);
+  animation: glowSweep 3s ease-in-out infinite;
+}
+
+@keyframes floatTitle {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes glowSweep {
+  0% {
+    opacity: 0.4;
+    transform: scaleX(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scaleX(0.95);
+  }
+}
+
 .subtext {
   max-width: 480px;
   color: var(--muted);
